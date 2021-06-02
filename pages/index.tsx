@@ -5,49 +5,41 @@ import { Speed } from "../common/components/Speed"
 import { useStore } from "effector-react"
 import {
     $lettersCount,
+    $speed,
     $startWidth,
     $width,
     $wordsCount,
 } from "../common/models/setting"
+import { range } from "lodash"
 export default () => {
     const wordsCount = useStore($wordsCount)
     const lettersCount = useStore($lettersCount)
     const width = useStore($width)
     const startWidth = useStore($startWidth)
+    const speed = useStore($speed)
     return (
         <>
             <Head>
                 <title>Поле зрения</title>
             </Head>
-            <main style={{ padding: "1rem", textAlign: "center" }}>
-                <h1 style={{ textAlign: "center" }}>Тренажер игры "Поле Зрения"</h1>
-                <p style={{ textAlign: "center" }}>
-                    <Setting
-                        title="Количество слов"
-                        values={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                    />
-                    <Setting
-                        title="Стартовое расстояние"
-                        values={[5, 10, 15, 20, 25, 30, 35, 40]}
-                    />
-                    <Setting
-                        title="Количество букв в словах"
-                        values={[3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-                    />
-                    <Setting
-                        title="Расстояние"
-                        values={[5, 10, 15, 20, 25, 30, 35, 40]}
-                    />
+            <main>
+                <h1 className="center">Тренажер игры "Поле Зрения"</h1>
+                <p className="center">
+                    <Setting title="Количество слов" values={range(1, 11)} />
+                    <Setting title="Стартовое расстояние" values={range(5, 41, 5)} />
+                    <Setting title="Количество букв в словах" values={range(3, 13)} />
+                    <Setting title="Расстояние" values={range(5, 41, 5)} />
                 </p>
                 <Speed />
                 <button
                     style={{ width: "60px", height: "30px" }}
                     onClick={() => {
                         Router.push(
-                            `/start?countWords=${wordsCount}
-                            &countLetters=${lettersCount}
+                            `/start?wordsCount=${wordsCount}
+                            &lettersCount=${lettersCount}
                             &startWidth=${startWidth}
-                            &width=${width}`
+                            &width=${width}
+                            &speed=${speed}`
                         )
                     }}
                 >

@@ -25,15 +25,7 @@ export const Setting = ({ title, values }: { title: string; values: number[] }) 
         }
     }, [value])
     return (
-        <span
-            style={{
-                display: "inline-block",
-                width: "50%",
-                borderWidth: "100px",
-                borderRadius: "15px",
-                borderColor: "black",
-            }}
-        >
+        <span className="setting">
             <h3>{title}</h3>
             <p>
                 {values.map((n) => (

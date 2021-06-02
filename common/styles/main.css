@@ -6,6 +6,8 @@
 .center {
     text-align: center;
 }
-body {
-    background-color: blue;
+main {
+    padding: 2rem;
+    margin: 2rem;
+    text-align: center;
 }

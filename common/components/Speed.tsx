@@ -1,12 +1,13 @@
-import { useState } from "react"
+import { useStore } from "effector-react"
+import { $speed, setSpeed } from "../models/setting"
 
 export const Speed = () => {
-    const [value, setValue] = useState(1)
+    const speed = useStore($speed)
     return (
         <>
-            <h1>Скорость: {value} сек.</h1>
-            <button onClick={() => setValue(value > 1 ? value - 0.5 : 1)}>-</button>
-            <button onClick={() => setValue(value + 0.5)}>+</button>
+            <h1>Скорость: {speed} сек.</h1>
+            <button onClick={() => setSpeed(speed > 1 ? speed - 0.5 : 1)}>-</button>
+            <button onClick={() => setSpeed(speed + 0.5)}>+</button>
         </>
     )
 }
