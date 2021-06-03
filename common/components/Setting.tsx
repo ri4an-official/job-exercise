@@ -33,6 +33,7 @@ export const Setting = ({ title, values }: { title: string; values: number[] }) 
                 ))}
             </p>
             <input
+                defaultValue={values[4]}
                 value={value}
                 onChange={(e) => setValue(+e.target.value)}
                 type="range"

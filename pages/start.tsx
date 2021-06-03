@@ -1,31 +1,47 @@
 import { useRouter } from "next/router"
-import { words } from "./../common/models/data.json"
 import Head from "next/head"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { words } from "./../common/models/data.json"
 export default () => {
     const { query } = useRouter()
-    const [showWord, setShowWord] = useState("вселенная")
     const [index, setIndex] = useState(0)
     const filterWords = words
-        .filter((w) => w.length === +query.lettersCount)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 5)
+        .filter((w) => w.length === +query.wordsCount)
+        .sort((_) => Math.random() - 0.5)
+        .slice(0, +query.wordsCount + 1)
+    const [word, setWord] = useState(filterWords[0])
+    useEffect(() => {
+        const t = setInterval(() => {
+            if (index < filterWords.length) {
+                setIndex(index + 1)
+                console.log("Index:", index)
+                setWord(filterWords[index])
+            } else clearInterval(t)
+        }, +query.speed * 1000)
+    }, [])
     return (
         <p>
             <Head>
                 <title>Start</title>
             </Head>
-            <h2>{index + " " + +query.speed}</h2>
-            <pre>{JSON.stringify(query, null, 2)}</pre>
-            <p>
-                <span>{showWord?.substring(0, Math.floor(showWord.length / 2))}</span>
-                <span> - </span>
-                <span>
-                    {showWord?.substring(
-                        Math.floor(showWord.length / 2),
-                        showWord.length
-                    )}
-                </span>
+            <p className="show center">
+                {index <= +query.wordsCount ? (
+                    <>
+                        <span className="left word">
+                            {word.substring(0, Math.floor(word.length / 2))}
+                        </span>
+                        <b> | </b>
+                        <span className="right word">
+                            {word.substring(Math.floor(word.length / 2), word.length)}
+                        </span>
+                    </>
+                ) : (
+                    <>
+                        <img src="" alt="Finish" />
+                        <br />
+                        <b>Отличная работа!</b>
+                    </>
+                )}
             </p>
         </p>
     )

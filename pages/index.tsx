@@ -35,11 +35,11 @@ export default () => {
                     style={{ width: "60px", height: "30px" }}
                     onClick={() => {
                         Router.push(
-                            `/start?wordsCount=${wordsCount}
-                            &lettersCount=${lettersCount}
-                            &startWidth=${startWidth}
-                            &width=${width}
-                            &speed=${speed}`
+                            `/start?wordsCount=${wordsCount ?? 5}
+                            &lettersCount=${lettersCount ?? 6}
+                            &startWidth=${startWidth ?? 50}
+                            &width=${width ?? 100}
+                            &speed=${speed ?? 1}`
                         )
                     }}
                 >

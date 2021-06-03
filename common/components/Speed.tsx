@@ -7,7 +7,7 @@ export const Speed = () => {
         <>
             <h1>Скорость: {speed} сек.</h1>
             <button onClick={() => setSpeed(speed > 1 ? speed - 0.5 : 1)}>-</button>
-            <button onClick={() => setSpeed(speed + 0.5)}>+</button>
+            <button onClick={() => setSpeed(speed <= 5 ? speed + 0.5 : 5)}>+</button>
         </>
     )
 }

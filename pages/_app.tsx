@@ -1,4 +1,2 @@
-import "./../common/styles/main.css"
-export default function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />
-}
+import "./../common/styles/main.scss"
+export default ({ Component, pageProps }) => <Component {...pageProps} />
